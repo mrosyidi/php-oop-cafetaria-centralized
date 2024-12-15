@@ -10,4 +10,24 @@
             public function save(Food $food): void;
             public function remove(int $number): bool;
         }
+
+        class FoodRepositoryImpl implements FoodRepository 
+        {
+            public array $foods = array();
+
+            public function findAll(): array 
+            {
+                return $this->foods;
+            }
+
+            public function save(Food $food): void 
+            {
+
+            }
+
+            public function remove(int $number): bool 
+            {
+
+            }
+        }
     }
