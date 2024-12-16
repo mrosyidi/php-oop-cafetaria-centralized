@@ -15,4 +15,13 @@
         $foodService->showFood();
     }
 
-    testShowFoodEmpty();
+    function testShowFood(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodRepository->save(new Food("Pastel", 5000));
+        $foodRepository->save(new Food("Rawon", 15000));
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodService->showFood();
+    }
+
+    testShowFood();
