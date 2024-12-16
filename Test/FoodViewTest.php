@@ -42,4 +42,17 @@
         $foodService->showFood();
     }
 
-    testViewShowFoodNotEmpty();
+    function testViewRemoveFood(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodView = new FoodView($foodService);
+        $foodService->addFood("Mie Ayam", 6000);
+        $foodService->addFood("Ayam Panggang", 15000);
+        $foodService->addFood("Pastel", 5000);
+        $foodService->showFood();
+        $foodView->removeFood();
+        $foodService->showFood();
+    }
+
+    testViewRemoveFood();
