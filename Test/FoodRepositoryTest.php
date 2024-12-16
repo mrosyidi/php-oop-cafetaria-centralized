@@ -17,4 +17,13 @@
         var_dump($foods);
     }
 
-    testFindAll();
+    function testSave(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $food = new Food("Ayam Panggang", 15000);
+        $foodRepository->save($food);
+        $foods = $foodRepository->findAll();
+        var_dump($foods);
+    }
+
+    testSave();
