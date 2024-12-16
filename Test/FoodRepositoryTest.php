@@ -26,4 +26,20 @@
         var_dump($foods);
     }
 
-    testFindAll();
+    function testRemoveFailed(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodRepository->save(new Food("Mie Ayam", 6000));
+        $foodRepository->save(new Food("Soto Ayam", 12000));
+        $foodRepository->save(new Food("Rawon", 15000));
+        $foodRepository->save(new Food("Ayam Panggang", 15000));
+        $foods = $foodRepository->findAll();
+        var_dump($foods);
+        $result = $foodRepository->remove(-1);
+        var_dump($result);
+        $foods = $foodRepository->findAll();
+        var_dump($foods);
+    }
+
+
+    testRemoveFailed();
