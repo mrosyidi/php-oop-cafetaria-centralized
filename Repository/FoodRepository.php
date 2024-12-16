@@ -13,7 +13,7 @@
 
         class FoodRepositoryImpl implements FoodRepository 
         {
-            public array $foods = array();
+            private array $foods = array();
 
             public function findAll(): array 
             {
