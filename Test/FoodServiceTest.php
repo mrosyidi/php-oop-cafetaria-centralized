@@ -55,5 +55,15 @@
         $foodService->showFood();
     }
 
+    function testRemoveFoodSuccess(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodService->addFood("Mie Goreng", 6000);
+        $foodService->addFood("Soto Ayam", 12000);
+        $foodService->showFood();
+        $foodService->removeFood(2);
+        $foodService->showFood();
+    }
 
-    testRemoveFoodFailed();
+    testRemoveFoodSuccess();
