@@ -54,7 +54,8 @@
 
             public function removeFood(int $number): bool 
             {
-
+                $result = $this->foodRepository->remove($number) ? true : false;
+                return $result;
             }
         }
     }
