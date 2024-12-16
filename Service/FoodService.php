@@ -48,7 +48,8 @@
 
             public function getFood(): array 
             {
-
+                $foods = $this->foodRepository->findAll();
+                return $foods;
             }
 
             public function removeFood(int $number): bool 
