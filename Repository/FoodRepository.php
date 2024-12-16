@@ -22,7 +22,8 @@
 
             public function save(Food $food): void 
             {
-
+                $index = sizeof($this->foods) + 1;
+                $this->foods[$index] = $food;
             }
 
             public function remove(int $number): bool 
