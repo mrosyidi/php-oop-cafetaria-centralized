@@ -77,7 +77,28 @@
 
             function removeFood(): void 
             {
-                
+                echo "MENGHAPUS MAKANAN" . PHP_EOL;
+
+                $number = InputHelper::input("Nomor makanan (x untuk batal)");
+
+                if($number == "x")
+                {
+                    echo "Batal menghapus makanan" . PHP_EOL;
+                }else if(!is_numeric($number))
+                {
+                    echo "Gagal menghapus makanan, nomor harus bilangan" . PHP_EOL;
+                }else
+                {
+                    $success = $this->foodService->removeFood($number);
+
+                    if($success)
+                    {
+                        echo "Sukses menghapus makanan nomor $number" . PHP_EOL;
+                    }else
+                    {
+                        echo "Gagal menghapus makanan nomor $number" . PHP_EOL;
+                    }
+                }
             }
         }
     }
