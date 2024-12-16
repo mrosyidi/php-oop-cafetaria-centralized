@@ -34,4 +34,14 @@
         $foodService->showFood();
     }
 
-    testAddFood();
+    function testGetFood(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodService->addFood("Mie Goreng", 6000);
+        $foodService->addFood("Soto Ayam", 12000);
+        $foods = $foodService->getFood();
+        var_dump($foods);
+    }
+
+    testGetFood();
