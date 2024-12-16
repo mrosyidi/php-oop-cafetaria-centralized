@@ -42,4 +42,4 @@
         $foodService->showFood();
     }
 
-    testViewAddFood();
+    testViewShowFoodNotEmpty();
