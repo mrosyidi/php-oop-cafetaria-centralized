@@ -5,6 +5,7 @@
     require_once __DIR__ . "/../Service/FoodService.php";
     require_once __DIR__ . "/../View/FoodView.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
+    require_once __DIR__ . "/../Helper/CheckHelper.php";
 
     use Entity\Food;
     use Repository\FoodRepositoryImpl;
@@ -29,4 +30,16 @@
         $foodView->showFood();
     }
 
-    testViewShowFoodNotEmpty();
+    function testViewAddFood(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodRepository->save(new Food("Ayam Panggang", 15000));
+        $foodRepository->save(new Food("Pastel", 5000));
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodService->showFood();
+        $foodView = new FoodView($foodService);
+        $foodView->addFood();
+        $foodService->showFood();
+    }
+
+    testViewAddFood();
