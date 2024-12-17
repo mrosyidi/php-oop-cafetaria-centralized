@@ -33,7 +33,7 @@
                         $this->addDrink();
                     }else if($pilihan == "2")
                     {
-
+                        $this->removeDrink();
                     }else if($pilihan == "x")
                     {
                         break;
