@@ -1,6 +1,5 @@
 <?php 
 
-
     require_once __DIR__ . "/../Entity/Drink.php";
     require_once __DIR__ . "/../Repository/DrinkRepository.php";
 
@@ -24,4 +23,12 @@
         var_dump($drinks);
     }
 
-    testFindAllNotEmpty();
+    function testSave(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkRepository->save(new Drink("Es Campur", 16000));
+        $drinks = $drinkRepository->findAll();
+        var_dump($drinks);
+    }
+
+    testSave();
