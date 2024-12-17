@@ -35,4 +35,15 @@
         $drinkService->showDrink();
     }
 
-    testShowDrinkNotEmpty();
+    function testGetDrink(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Jambu", 8000);
+        $drinkService->addDrink("Jus Melon", 8000);
+        $drinks = $drinkService->getDrink();
+        var_dump($drinks);
+    }
+
+    testGetDrink();
