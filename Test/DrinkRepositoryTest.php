@@ -16,9 +16,9 @@
     function testFindAllNotEmpty(): void
     {
         $drinkRepository = new DrinkRepositoryImpl();
-        $drinkRepository->drinks[1] = new Drink("Es Teh", 3000);
-        $drinkRepository->drinks[2] = new Drink("Es Coklat", 12000);
-        $drinkRepository->drinks[3] = new Drink("Jus Wortel", 8000);
+        $drinkRepository->save(new Drink("Es Teh", 3000));
+        $drinkRepository->save(new Drink("Es Coklat", 12000));
+        $drinkRepository->save(new Drink("Jus Wortel", 8000));
         $drinks = $drinkRepository->findAll();
         var_dump($drinks);
     }
@@ -31,4 +31,4 @@
         var_dump($drinks);
     }
 
-    testSave();
+    testFindAllNotEmpty();
