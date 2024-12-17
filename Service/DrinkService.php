@@ -54,7 +54,8 @@
 
             public function removeDrink(int $number): bool
             {
-
+                $result = $this->drinkRepository->remove($number) ? true : false;
+                return $result;
             }
         }
     }
