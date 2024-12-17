@@ -13,7 +13,7 @@
 
         class DrinkRepositoryImpl implements DrinkRepository
         {
-            public array $drinks = array();
+            private array $drinks = array();
 
             public function findAll(): array
             {
