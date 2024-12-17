@@ -44,4 +44,17 @@
         $drinkService->showDrink();
     }
 
-    testViewShowDrinkNotEmpty();
+    function testViewRemoveDrink(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Teh", 3000);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Wortel", 8000);
+        $drinkView = new DrinkView($drinkService);
+        $drinkService->showDrink();
+        $drinkView->removeDrink();
+        $drinkService->showDrink();
+    }
+
+    testViewRemoveDrink();
