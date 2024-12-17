@@ -30,7 +30,7 @@
 
                     if($pilihan == "1")
                     {
-
+                        $this->addDrink();
                     }else if($pilihan == "2")
                     {
 
