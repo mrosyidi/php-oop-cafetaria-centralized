@@ -46,4 +46,16 @@
         var_dump($drinks);
     }
 
-    testGetDrink();
+    function testRemoveDrinkFailed(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Jambu", 8000);
+        $drinkService->addDrink("Jus Melon", 8000);
+        $drinkService->showDrink();
+        $drinkService->removeDrink(-1);
+        $drinkService->showDrink();
+    }
+
+    testRemoveDrinkFailed();
