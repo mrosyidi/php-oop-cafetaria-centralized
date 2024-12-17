@@ -5,6 +5,7 @@
     require_once __DIR__ . "/../Service/DrinkService.php";
     require_once __DIR__ . "/../View/DrinkView.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
+    require_once __DIR__ . "/../Helper/CheckHelper.php";
 
     use Entity\Drink;
     use Repository\DrinkRepositoryImpl;
@@ -30,4 +31,17 @@
         $drinkView->showDrink();
     }
 
-    testViewShowDrinkNotEmpty();
+    function testViewAddDrink(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Teh", 3000);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Wortel", 8000);
+        $drinkView = new DrinkView($drinkService);
+        $drinkService->showDrink();
+        $drinkView->addDrink();
+        $drinkService->showDrink();
+    }
+
+    testViewAddDrink();
