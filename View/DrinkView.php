@@ -80,7 +80,28 @@
 
             public function removeDrink(): void 
             {
+                echo "MENGHAPUS MINUMAN" . PHP_EOL;
 
+                $number = InputHelper::input("Nomor minuman (x untuk batal)");
+
+                if($number == "x")
+                {
+                    echo "Batal menghapus minuman" . PHP_EOL;
+                }else if(!is_numeric($number))
+                {
+                    echo "Gagal menghapus minuman, nomor harus bilangan" . PHP_EOL;
+                }else
+                {
+                    $success = $this->drinkService->removeDrink($number);
+
+                    if($success)
+                    {
+                        echo "Sukses menghapus minuman nomor $number" . PHP_EOL;
+                    }else
+                    {
+                        echo "Gagal menghapus minuman nomor $number" . PHP_EOL;
+                    }
+                }
             }
         }
     }
