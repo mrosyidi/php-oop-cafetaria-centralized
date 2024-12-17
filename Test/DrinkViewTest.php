@@ -23,10 +23,10 @@
     function testViewShowDrinkNotEmpty(): void
     {
         $drinkRepository = new DrinkRepositoryImpl();
-        $drinkRepository->drinks[1] = new Drink("Es Teh", 3000);
-        $drinkRepository->drinks[2] = new Drink("Es Coklat", 12000);
-        $drinkRepository->drinks[3] = new Drink("Jus Wortel", 8000);
         $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Teh", 3000);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Wortel", 8000);
         $drinkView = new DrinkView($drinkService);
         $drinkView->showDrink();
     }
@@ -44,4 +44,4 @@
         $drinkService->showDrink();
     }
 
-    testViewAddDrink();
+    testViewShowDrinkNotEmpty();
