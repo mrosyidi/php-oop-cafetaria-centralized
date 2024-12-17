@@ -10,4 +10,15 @@
         var_dump($order);
     }
 
-    testOrderCostruct();
+    function testOrderEncapsulate(): void
+    {
+        $order = new Order();
+        $order->setCode(1);
+        $order->setName("Mie Goreng");
+        $order->setPrice(6000);
+        $order->setQty(2);
+        $order->setSubTotal();
+        var_dump($order);
+    }
+
+    testOrderEncapsulate();
