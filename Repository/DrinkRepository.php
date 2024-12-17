@@ -22,7 +22,8 @@
 
             public function save(Drink $drink): void
             {
-
+                $index = sizeof($this->drinks) + 1;
+                $this->drinks[$index] = $drink;
             }
 
             public function remove(int $number): bool 
