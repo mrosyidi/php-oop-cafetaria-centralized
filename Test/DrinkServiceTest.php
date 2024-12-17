@@ -25,4 +25,14 @@
         $drinkService->showDrink();
     }
 
-    testShowDrinkNotEmpty();
+    function testAddDrink(): void
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->showDrink();
+        $drinkService->addDrink("Es Teh", 3000);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->showDrink();
+    }
+
+    testAddDrink();
