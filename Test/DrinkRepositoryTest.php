@@ -31,4 +31,18 @@
         var_dump($drinks);
     }
 
-    testFindAllNotEmpty();
+    function testRemoveFailed(): void 
+    {
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkRepository->save(new Drink("Es Teh", 3000));
+        $drinkRepository->save(new Drink("Es Coklat", 12000));
+        $drinkRepository->save(new Drink("Jus Wortel", 8000));
+        $drinks = $drinkRepository->findAll();
+        var_dump($drinks);
+        $result = $drinkRepository->remove(-1);
+        var_dump($result);
+        $drinks = $drinkRepository->findAll();
+        var_dump($drinks);
+    }
+
+    testRemoveFailed();
