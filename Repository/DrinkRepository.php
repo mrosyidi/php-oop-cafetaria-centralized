@@ -28,7 +28,26 @@
 
             public function remove(int $number): bool 
             {
+                $elements = sizeof($this->drinks);
 
+                if($number <= 0)
+                {
+                    return false;
+                }
+
+                if($elements < $number)
+                {
+                    return false;
+                }
+
+                for($index = $number; $index < sizeof($this->drinks); $index++)
+                {
+                    $this->drinks[$index]->setName($this->drinks[$index+1]->getName());
+                    $this->drinks[$index]->setPrice($this->drinks[$index+1]->getPrice());
+                }
+
+                unset($this->drinks[sizeof($this->drinks)]);
+                return true;
             }
         }
     }
