@@ -18,10 +18,10 @@
     function testShowDrinkNotEmpty(): void
     {
         $drinkRepository = new DrinkRepositoryImpl();
-        $drinkRepository->drinks[1] = new Drink("Es Coklat", 12000);
-        $drinkRepository->drinks[2] = new Drink("Jus Jambu", 8000);
-        $drinkRepository->drinks[3] = new Drink("Jus Melon", 8000);
         $drinkService = new DrinkServiceImpl($drinkRepository);
+        $drinkService->addDrink("Es Coklat", 12000);
+        $drinkService->addDrink("Jus Jambu", 8000);
+        $drinkService->addDrink("Jus Melon", 8000);
         $drinkService->showDrink();
     }
 
@@ -35,4 +35,4 @@
         $drinkService->showDrink();
     }
 
-    testAddDrink();
+    testShowDrinkNotEmpty();
