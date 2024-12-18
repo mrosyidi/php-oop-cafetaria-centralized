@@ -2,6 +2,7 @@
 
     require_once __DIR__ . "/Entity/Food.php";
     require_once __DIR__ . "/Entity/Drink.php";
+    require_once __DIR__ . "/Entity/Order.php";
     require_once __DIR__ . "/Repository/FoodRepository.php";
     require_once __DIR__ . "/Repository/DrinkRepository.php";
     require_once __DIR__ . "/Service/FoodService.php";
