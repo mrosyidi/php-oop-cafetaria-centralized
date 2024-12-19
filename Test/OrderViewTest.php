@@ -35,4 +35,22 @@
         $orderView->showOrder();
     }
 
-    testViewShowOrderEmpty();
+    function testViewShowOrderNotEmpty(): void
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $food = new Food("Mie Goreng", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->orders[1] = new Order(1, $food->getName(), $food->getPrice(), 1);
+        $food = new Food("Batagor", 8000);
+        $orderRepository->orders[2] = new Order(1, $food->getName(), $food->getPrice(), 1);
+        $drink = new Drink("Es Campur", 12000);
+        $orderRepository->orders[3] = new Order(1, $drink->getName(), $drink->getPrice(), 2);
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orderView = new OrderView($orderService, $foodService, $drinkService);
+        $orderView->showOrder();
+    }
+
+    testViewShowOrderNotEmpty();
