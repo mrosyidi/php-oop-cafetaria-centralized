@@ -11,6 +11,7 @@
     require_once __DIR__ . "/Service/OrderService.php";
     require_once __DIR__ . "/View/FoodView.php";
     require_once __DIR__ . "/View/DrinkView.php";
+    require_once __DIR__ . "/View/OrderView.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
     require_once __DIR__ . "/Helper/CheckHelper.php";
 
