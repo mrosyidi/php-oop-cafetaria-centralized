@@ -76,4 +76,24 @@
         $orderService->showOrder();
     }
 
-    testViewAddOrderFood();
+    function testViewAddOrderDrink(): void 
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $drinkRepository->save(new Drink("Jus Wortel", 6000));
+        $drinkRepository->save(new Drink("Es Teh", 4000));
+        $drinkRepository->save(new Drink("Es Coklat", 12000));
+        $orderView = new OrderView($orderService, $foodService, $drinkService);
+        $orderView->addOrder(2, false);
+        $orderService->showOrder();
+        $orderView->addOrder(2, false);
+        $orderService->showOrder();
+        $orderView->addOrder(2, true);
+        $orderService->showOrder();
+    }
+
+    testViewAddOrderDrink();
