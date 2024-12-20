@@ -30,4 +30,17 @@
         var_dump($orders);
     }
 
-    testFindAllNotEmpty();
+    function testSave(): void 
+    {
+        $food = new Food("Mie Goreng", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $drink = new Drink("Es Campur", 12000);
+        $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
+        $food = new Food("Pastel", 5000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 3));
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testSave();
