@@ -29,6 +29,9 @@
     function testViewShowOrderEmpty(): void
     {
         $foodRepository = new FoodRepositoryImpl();
+        $foodRepository->save(new Food("Mie Ayam", 6000));
+        $foodRepository->save(new Food("Soto Ayam", 10000));
+        $foodRepository->save(new Food("Rawon", 12000));
         $foodService = new FoodServiceImpl($foodRepository);
         $drinkRepository = new DrinkRepositoryImpl();
         $drinkService = new DrinkServiceImpl($drinkRepository);
@@ -96,4 +99,4 @@
         $orderService->showOrder();
     }
 
-    testViewAddOrderDrink();
+    testViewShowOrderEmpty();
