@@ -32,4 +32,15 @@
         $orderService->showOrder();
     }
 
-    testShowOrderNotEmpty();
+    function testAddOrder(): void
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $food = new Food("Pastel", 5000);
+        $orderService->addOrder(1, $food->getName(), $food->getPrice(), 1);
+        $drink = new Drink("Es Teler", 10000);
+        $orderService->addOrder(1, $drink->getName(), $drink->getPrice(), 1);
+        $orderService->showOrder();
+    }
+
+    testAddOrder();
