@@ -21,7 +21,8 @@
 
             public function save(Order $order): void 
             {
-                
+                $index = sizeof($this->orders) + 1;
+                $this->orders[$index] = $order;
             }
 
         }
