@@ -26,4 +26,13 @@
         var_dump($result);
     }
 
-    testRangeHelperOutOfRangePlus();
+    function testRangeHelperInRange(): void
+    {
+        $drinks[1] = new Drink("Jus Semangka", 8000);
+        $drinks[2] = new Drink("Es Campur", 12000);
+        $drinks[3] = new Drink("Es Coklat", 12000);
+        $result = RangeHelper::range($drinks, 2);
+        var_dump($result);
+    }
+
+    testRangeHelperInRange();
