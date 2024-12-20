@@ -12,8 +12,11 @@
     require_once __DIR__ . "/View/FoodView.php";
     require_once __DIR__ . "/View/DrinkView.php";
     require_once __DIR__ . "/View/OrderView.php";
-    require_once __DIR__ . "/Helper/InputHelper.php";
     require_once __DIR__ . "/Helper/CheckHelper.php";
+    require_once __DIR__ . "/Helper/CodeHelper.php";
+    require_once __DIR__ . "/Helper/DataHelper.php";
+    require_once __DIR__ . "/Helper/InputHelper.php";
+    require_once __DIR__ . "/Helper/RangeHelper.php";
 
     use Repository\FoodRepositoryImpl;
     use Repository\DrinkRepositoryImpl;
@@ -23,6 +26,7 @@
     use Service\OrderServiceImpl;
     use View\FoodView;
     use View\DrinkView;
+    use View\OrderView;
     use Helper\InputHelper;
 
     $foodRepository = new FoodRepositoryImpl();
@@ -32,6 +36,10 @@
     $drinkRepository = new DrinkRepositoryImpl();
     $drinkService = new DrinkServiceImpl($drinkRepository);
     $drinkView = new DrinkView($drinkService);
+
+    $orderRepository = new OrderRepositoryImpl();
+    $orderService = new OrderServiceImpl($orderRepository);
+    $orderView = new OrderView($orderService, $foodService, $drinkService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -55,7 +63,7 @@
             $drinkView->showDrink();
         }else if($pilihan == "3")
         {
-
+            $orderView->showOrder();
         }else if($pilihan == "4")
         {
 
