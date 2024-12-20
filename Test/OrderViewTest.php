@@ -52,6 +52,9 @@
         $foodRepository->save(new Food("Rawon", 12000));
         $foodService = new FoodServiceImpl($foodRepository);
         $drinkRepository = new DrinkRepositoryImpl();
+        $drinkRepository->save(new Drink("Es Coklat", 12000));
+        $drinkRepository->save(new Drink("Es Teh", 4000));
+        $drinkRepository->save(new Drink("Jus Wortel", 6000));
         $drinkService = new DrinkServiceImpl($drinkRepository);
         $orderRepository = new OrderRepositoryImpl();
         $orderService = new OrderServiceImpl($orderRepository);
@@ -102,4 +105,4 @@
         $orderService->showOrder();
     }
 
-    testViewShowOrderEmpty();
+    testViewShowOrderNotEmpty();
