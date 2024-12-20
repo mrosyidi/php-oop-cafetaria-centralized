@@ -21,11 +21,11 @@
     {
         $food = new Food("Mie Goreng", 6000);
         $orderRepository = new OrderRepositoryImpl();
-        $orderRepository->orders[1] = new Order(1, $food->getName(), $food->getPrice(), 1);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
         $drink = new Drink("Es Campur", 12000);
-        $orderRepository->orders[2] = new Order(1, $drink->getName(), $drink->getPrice(), 2);
+        $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
         $food = new Food("Pastel", 5000);
-        $orderRepository->orders[3] = new Order(1, $food->getName(), $food->getPrice(), 3);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 3));
         $orders = $orderRepository->findAll();
         var_dump($orders);
     }
@@ -43,4 +43,4 @@
         var_dump($orders);
     }
 
-    testSave();
+    testFindAllNotEmpty();
