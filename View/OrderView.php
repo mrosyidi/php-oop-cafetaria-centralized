@@ -25,6 +25,8 @@
 
             public function showOrder(): void 
             {
+                $open = true;
+
                 while(true)
                 {
                     $this->orderService->showOrder();
@@ -38,7 +40,9 @@
 
                     if($pilihan == "1")
                     {
-
+                        $exit = $open ? true : false;
+                        $this->addOrder(1, $exit);
+                        $open = false;
                     }else if($pilihan == "2")
                     {
                         
