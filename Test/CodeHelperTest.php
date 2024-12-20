@@ -42,4 +42,21 @@
         var_dump($code);
     }
 
-    testCodeHelperDifferentCode();
+    function testCodeHelperEvaluate(): void
+    {
+        $food = new Food("Mie Ayam", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        $code = CodeHelper::code($orders, true);
+        $food = new Food("Pastel", 5000);
+        $orderRepository->save(new Order($code, $food->getName(), $food->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        $code = CodeHelper::code($orders, true);
+        $drink = new Food("Es Campur", 12000);
+        $orderRepository->save(new Order($code, $drink->getName(), $drink->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testCodeHelperEvaluate();
