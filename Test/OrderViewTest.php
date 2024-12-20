@@ -10,7 +10,10 @@
     require_once __DIR__ . "/../Service/DrinkService.php";
     require_once __DIR__ . "/../Service/OrderService.php";
     require_once __DIR__ . "/../View/OrderView.php";
+    require_once __DIR__ . "/../Helper/CodeHelper.php";
+    require_once __DIR__ . "/../Helper/DataHelper.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
+    require_once __DIR__ . "/../Helper/RangeHelper.php";
 
     use Entity\Food;
     use Entity\Drink;
@@ -53,4 +56,24 @@
         $orderView->showOrder();
     }
 
-    testViewShowOrderNotEmpty();
+    function testViewAddOrderFood(): void 
+    {
+        $foodRepository = new FoodRepositoryImpl();
+        $foodService = new FoodServiceImpl($foodRepository);
+        $drinkRepository = new DrinkRepositoryImpl();
+        $drinkService = new DrinkServiceImpl($drinkRepository);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $foodRepository->save(new Food("Mie Goreng", 6000));
+        $foodRepository->save(new Food("Pastel", 4000));
+        $foodRepository->save(new Food("Soto Ayam", 12000));
+        $orderView = new OrderView($orderService, $foodService, $drinkService);
+        $orderView->addOrder(1, false);
+        $orderService->showOrder();
+        $orderView->addOrder(1, false);
+        $orderService->showOrder();
+        $orderView->addOrder(1, true);
+        $orderService->showOrder();
+    }
+
+    testViewAddOrderFood();
