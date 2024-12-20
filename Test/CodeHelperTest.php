@@ -32,4 +32,14 @@
         var_dump($code);
     }
 
-    testCodeHelperSameCode();
+    function testCodeHelperDifferentCode(): void
+    {
+        $food = new Food("Mie Ayam", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        $code = CodeHelper::code($orders, true);
+        var_dump($code);
+    }
+
+    testCodeHelperDifferentCode();
