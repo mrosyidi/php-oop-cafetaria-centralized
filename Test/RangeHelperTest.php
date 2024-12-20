@@ -17,4 +17,13 @@
         var_dump($result);
     }
 
-    testRangeHelperOutOfRangeMinus();
+    function testRangeHelperOutOfRangePlus(): void
+    {
+        $foods[1] = new Food("Pastel", 5000);
+        $foods[2] = new Food("Ayam Panggang", 15000);
+        $foods[3] = new Food("Somay", 8000);
+        $result = RangeHelper::range($foods, 4);
+        var_dump($result);
+    }
+
+    testRangeHelperOutOfRangePlus();
