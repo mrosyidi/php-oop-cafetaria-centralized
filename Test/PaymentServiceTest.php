@@ -25,4 +25,22 @@
         $paymentService->showPayment();
     }
 
-    testShowPaymentEmpty();
+    function testShowPaymentNotEmpty(): void
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $paymentRepository = new PaymentRepositoryImpl();
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $food = new Food("Mie Goreng", 6000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $food = new Food("Soto Ayam", 12000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $drink = new Drink("Es Campur", 12000);
+        $orderRepository->save(new Order(2, $drink->getName(), $drink->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        $orders = array_filter($orders, fn($order)=>$order->getCode() == 1);
+        $total = array_sum(array_map(fn($order)=>$order->getSubTotal(), $orders));
+        $paymentRepository->payments[1] = new Payment(1, $total, 50000);
+        $paymentService->showPayment();
+    }
+
+    testShowPaymentNotEmpty();
