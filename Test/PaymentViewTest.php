@@ -30,4 +30,20 @@
         $paymentView->showPayment();
     }
 
-    testViewShowPaymentEmpty();
+    function testViewShowPaymentNotEmpty(): void
+    {
+        $food = new Food("Mie Goreng", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $food = new Food("Batagor", 8000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $drink = new Drink("Es Campur", 12000);
+        $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
+        $orderService = new OrderServiceImpl($orderRepository);
+        $paymentRepository = new PaymentRepositoryImpl();
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $paymentView = new PaymentView($paymentService, $orderService);
+        $paymentView->showPayment();
+    }
+
+    testViewShowPaymentNotEmpty();
