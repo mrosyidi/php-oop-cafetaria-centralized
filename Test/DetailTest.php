@@ -10,4 +10,15 @@
         var_dump($detail);
     }
 
-    testDetailCostruct();
+    function testDetailEncapsulate(): void
+    {
+        $detail = new Detail();
+        $detail->setCode(1);
+        $detail->setName("Mie Goreng");
+        $detail->setPrice(6000);
+        $detail->setQty(2);
+        $detail->setSubTotal();
+        var_dump($detail);
+    }
+
+    testDetailEncapsulate();
