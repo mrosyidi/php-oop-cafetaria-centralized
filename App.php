@@ -21,6 +21,7 @@
     require_once __DIR__ . "/Helper/DataHelper.php";
     require_once __DIR__ . "/Helper/FindHelper.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
+    require_once __DIR__ . "/Helper/PayHelper.php";
     require_once __DIR__ . "/Helper/RangeHelper.php";
 
     use Repository\FoodRepositoryImpl;
