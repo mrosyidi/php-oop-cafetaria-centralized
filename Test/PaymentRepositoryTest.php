@@ -39,4 +39,22 @@
         var_dump($payments);
     }
 
-    testFindAllNotEmpty();
+    function testSave(): void
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $paymentRepository = new PaymentRepositoryImpl();
+        $food = new Food("Soto Ayam", 12000);
+        $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 1));
+        $drink = new Drink("Es Campur", 12000);
+        $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
+        $drink = new Drink("Es Coklat", 12000);
+        $orderRepository->save(new Order(2, $drink->getName(), $drink->getPrice(), 2));
+        $orders = $orderRepository->findAll();
+        $orders = array_filter($orders, fn($order)=>$order->getCode() == 2);
+        $total = array_sum(array_map(fn($order)=>$order->getSubTotal(), $orders));
+        $paymentRepository->save(new Payment(2, $total, 50000));
+        $payments = $paymentRepository->findAll();
+        var_dump($payments);
+    }
+
+    testSave();
