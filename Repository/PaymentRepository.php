@@ -12,7 +12,7 @@
 
         class PaymentRepositoryImpl implements PaymentRepository
         {
-            public array $payments = array();
+            private array $payments = array();
 
             public function findAll(): array
             {
