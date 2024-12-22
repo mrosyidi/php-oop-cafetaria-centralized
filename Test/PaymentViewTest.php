@@ -65,4 +65,4 @@
         $paymentView->addPayment();
     }
 
-    testViewAddPayment();
+    testViewShowPaymentNotEmpty();
