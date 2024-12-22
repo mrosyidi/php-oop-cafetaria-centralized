@@ -20,4 +20,16 @@
         var_dump($total);
     }
 
-    testFindHelperNotFound();
+    function testFindHelperFound(): void
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orderService->addOrder(1, "Mie Ayam", 6000, 2);
+        $orderService->addOrder(1, "Es Campur", 12000, 1);
+        $orderService->addOrder(1, "Es Coklat", 12000, 1);
+        $orders = $orderRepository->findAll();
+        $total = FindHelper::find($orders, 1);
+        var_dump($total);
+    }
+
+    testFindHelperFound();
