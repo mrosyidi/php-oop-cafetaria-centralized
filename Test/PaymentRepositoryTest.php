@@ -34,7 +34,7 @@
         $orders = $orderRepository->findAll();
         $orders = array_filter($orders, fn($order)=>$order->getCode() == 1);
         $total = array_sum(array_map(fn($order)=>$order->getSubTotal(), $orders));
-        $paymentRepository->payments[1] = new Payment(1, $total, 50000);
+        $paymentRepository->save(new Payment(1, $total, 50000));
         $payments = $paymentRepository->findAll();
         var_dump($payments);
     }
@@ -57,4 +57,4 @@
         var_dump($payments);
     }
 
-    testSave();
+    testFindAllNotEmpty();
