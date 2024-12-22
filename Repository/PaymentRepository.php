@@ -21,7 +21,8 @@
 
             public function save(Payment $payment): void 
             {
-                
+                $index = sizeof($this->payments) + 1;
+                $this->payments[$index] = $payment;
             } 
         }
     }
