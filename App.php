@@ -27,12 +27,15 @@
     use Repository\FoodRepositoryImpl;
     use Repository\DrinkRepositoryImpl;
     use Repository\OrderRepositoryImpl;
+    use Repository\PaymentRepositoryImpl;
     use Service\FoodServiceImpl;
     use Service\DrinkServiceImpl;
     use Service\OrderServiceImpl;
+    use Service\PaymentServiceImpl;
     use View\FoodView;
     use View\DrinkView;
     use View\OrderView;
+    use View\PaymentView;
     use Helper\InputHelper;
 
     $foodRepository = new FoodRepositoryImpl();
@@ -46,6 +49,10 @@
     $orderRepository = new OrderRepositoryImpl();
     $orderService = new OrderServiceImpl($orderRepository);
     $orderView = new OrderView($orderService, $foodService, $drinkService);
+
+    $paymentRepository = new PaymentRepositoryImpl();
+    $paymentService = new PaymentServiceImpl($paymentRepository);
+    $paymentView = new PaymentView($paymentService, $orderService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -72,7 +79,7 @@
             $orderView->showOrder();
         }else if($pilihan == "4")
         {
-
+            $paymentView->showPayment();
         }else if($pilihan == "5")
         {
 
