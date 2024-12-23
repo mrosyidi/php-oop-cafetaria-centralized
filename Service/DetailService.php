@@ -38,7 +38,7 @@
                         {
                             $counter++;
                             echo "$counter. " . $detail->getCode() . " " . $detail->getName() . " Rp." . $detail->getPrice() .
-                            " (x" . $detail->getQty() . ") Rp." . $detail->getSubTotal() . " " .  $detail->getStatus() . PHP_EOL;
+                            " (x" . $detail->getQty() . ") Rp." . $detail->getSubTotal() . PHP_EOL;
                         }
                     }
                 }
