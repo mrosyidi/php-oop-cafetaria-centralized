@@ -3,22 +3,29 @@
     require_once __DIR__ . "/../Entity/Food.php";
     require_once __DIR__ . "/../Entity/Drink.php";
     require_once __DIR__ . "/../Entity/Order.php";
+    require_once __DIR__ . "/../Entity/Payment.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
+    require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Service/OrderService.php";
+    require_once __DIR__ . "/../Service/PaymentService.php";
     require_once __DIR__ . "/../Helper/CodeHelper.php";
 
     use Entity\Food;
     use Entity\Drink;
     use Entity\Order;
     use Repository\OrderRepositoryImpl;
+    use Repository\PaymentRepositoryImpl;
     use Service\OrderServiceImpl;
+    use Service\PaymentServiceImpl;
     use Helper\CodeHelper;
 
     function testCodeHelperEmpty(): void
     {
         $orderRepository = new OrderRepositoryImpl();
+        $paymentRepository = new PaymentRepositoryImpl();
         $orders = $orderRepository->findAll();
-        $code = CodeHelper::code($orders, true);
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, true);
         var_dump($code);
     }
 
@@ -59,4 +66,4 @@
         var_dump($orders);
     }
 
-    testCodeHelperEvaluate();
+    testCodeHelperEmpty();
