@@ -21,7 +21,8 @@
 
             public function save(Detail $detail): void
             {
-
+                $index = sizeof($this->details) + 1;
+                $this->details[$index] = $detail;
             }
         }
     }
