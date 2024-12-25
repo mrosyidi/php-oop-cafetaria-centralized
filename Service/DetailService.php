@@ -46,7 +46,15 @@
 
             public function addDetail(array $items): void
             {
-                
+                for($index = 1; $index <= sizeof($items); $index++)
+                {
+                    $code = $items[$index]->getCode();
+                    $name = $items[$index]->getName();
+                    $price = $items[$index]->getPrice();
+                    $qty = $items[$index]->getQty();
+                    $detail = new Detail($code, $name, $price, $qty);
+                    $this->detailRepository->save($detail);
+                }
             }
         }
     }
