@@ -84,7 +84,9 @@
         $foodRepository->save(new Food("Mie Goreng", 6000));
         $foodRepository->save(new Food("Pastel", 4000));
         $foodRepository->save(new Food("Soto Ayam", 12000));
-        $orderView = new OrderView($orderService, $foodService, $drinkService);
+        $paymentRepository = new PaymentRepositoryImpl();
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $orderView = new OrderView($orderService, $foodService, $drinkService, $paymentService);
         $orderView->addOrder(1, false);
         $orderService->showOrder();
         $orderView->addOrder(1, false);
@@ -113,4 +115,4 @@
         $orderService->showOrder();
     }
 
-    testViewShowOrderNotEmpty();
+    testViewAddOrderFood();
