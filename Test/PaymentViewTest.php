@@ -4,6 +4,7 @@
     require_once __DIR__ . "/../Entity/Drink.php";
     require_once __DIR__ . "/../Entity/Order.php";
     require_once __DIR__ . "/../Entity/Payment.php";
+    require_once __DIR__ . "/../Entity/Detail.php";
     require_once __DIR__ . "/../Repository/OrderRepository.php";
     require_once __DIR__ . "/../Repository/PaymentRepository.php";
     require_once __DIR__ . "/../Repository/DetailRepository.php";
@@ -11,6 +12,7 @@
     require_once __DIR__ . "/../Service/PaymentService.php";
     require_once __DIR__ . "/../Service/DetailService.php";
     require_once __DIR__ . "/../View/PaymentView.php";
+    require_once __DIR__ . "/../Helper/DuplicateHelper.php";
     require_once __DIR__ . "/../Helper/FindHelper.php";
     require_once __DIR__ . "/../Helper/InputHelper.php";
     require_once __DIR__ . "/../Helper/PayHelper.php";
@@ -48,9 +50,11 @@
         $drink = new Drink("Es Campur", 12000);
         $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
         $orderService = new OrderServiceImpl($orderRepository);
+        $detailRepository = new DetailRepositoryImpl();
+        $detailService = new DetailServiceImpl($detailRepository);
         $paymentRepository = new PaymentRepositoryImpl();
         $paymentService = new PaymentServiceImpl($paymentRepository);
-        $paymentView = new PaymentView($paymentService, $orderService);
+        $paymentView = new PaymentView($paymentService, $orderService, $detailService);
         $paymentView->showPayment();
     }
 
@@ -71,4 +75,4 @@
         $paymentView->addPayment();
     }
 
-    testViewShowPaymentEmpty();
+    testViewShowPaymentNotEmpty();
