@@ -8,11 +8,12 @@
         {
             public function findAll(): array;
             public function save(Order $order): void;
+            public function remove(int $code): void;
         }
 
         class OrderRepositoryImpl implements OrderRepository 
         {
-            public array $orders = array();
+            private array $orders = array();
 
             public function findAll(): array
             {
@@ -25,5 +26,21 @@
                 $this->orders[$index] = $order;
             }
 
+            public function remove(int $code): void
+            {
+                $counter = 0;
+                $temporary = array();
+
+                for($index = 1; $index <= sizeof($this->orders); $index++)
+                {
+                    if($this->orders[$index]->getCode() != $code)
+                    {
+                        $counter++;
+                        $temporary[$counter] = $this->orders[$index];
+                    }
+                }
+
+                $this->orders = $temporary;
+            }
         }
     }
