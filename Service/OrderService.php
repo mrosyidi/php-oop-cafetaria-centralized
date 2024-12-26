@@ -9,6 +9,7 @@
         {
             public function showOrder(): void;
             public function addOrder(int $code, string $name, int $price, int $qty): void;
+            public function removeOrder(int $code): void;
             public function getOrder(): array;
         }
 
@@ -44,6 +45,11 @@
             {
                 $order = new Order($code, $name, $price, $qty);
                 $this->orderRepository->save($order);
+            }
+
+            public function removeOrder(int $code): void
+            {
+                $this->orderRepository->remove($code);
             }
 
             public function getOrder(): array
