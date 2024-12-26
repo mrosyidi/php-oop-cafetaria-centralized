@@ -13,6 +13,7 @@
     use Entity\Food;
     use Entity\Drink;
     use Entity\Order;
+    use Entity\Payment;
     use Repository\OrderRepositoryImpl;
     use Repository\PaymentRepositoryImpl;
     use Service\OrderServiceImpl;
@@ -33,9 +34,14 @@
     {
         $food = new Food("Mie Ayam", 6000);
         $orderRepository = new OrderRepositoryImpl();
+        $paymentRepository = new PaymentRepositoryImpl();
         $orderRepository->save(new Order(1, $food->getName(), $food->getPrice(), 2));
         $orders = $orderRepository->findAll();
-        $code = CodeHelper::code($orders, false);
+        $orders = array_filter($orders, fn($order)=>$order->getCode() == 1);
+        $total = array_sum(array_map(fn($order)=>$order->getSubTotal(), $orders));
+        $paymentRepository->save(new Payment(1, $total, 50000));
+        $payments = $paymentRepository->findAll();
+        $code = CodeHelper::code($orders, $payments, false);
         var_dump($code);
     }
 
@@ -66,4 +72,4 @@
         var_dump($orders);
     }
 
-    testCodeHelperEmpty();
+    testCodeHelperSameCode();

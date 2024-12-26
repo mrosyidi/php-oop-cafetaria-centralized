@@ -11,7 +11,7 @@
                     $code = 1;
                 }else if(empty($orders) && !empty($payments))
                 {                    
-                    $max = max(array_column($payments, 'code'));
+                    $max = max(array_map(fn($payment)=>$payment->getCode(), $payments));
                     $code = $max + 1;
                 }
                 else if(!empty($orders) && !$exit)
@@ -19,11 +19,11 @@
                     $code = $orders[sizeof($orders)]->getCode();
                 }else if(!empty($orders) && $exit)
                 {
-                    $max = max(array_column($payments, 'code'));
+                    $max = max(array_map(fn($payment)=>$payment->getCode(), $payments));
 
                     if(!empty($payments))
                     {
-                        $paymentMax = max(array_column($payments, 'code'));
+                        $paymentMax = max(array_map(fn($payment)=>$payment->getCode(), $payments));
                         $max = $max < $paymentMax ? $paymentMax : $max;
                     }
 
