@@ -19,7 +19,7 @@
                     $code = $orders[sizeof($orders)]->getCode();
                 }else if(!empty($orders) && $exit)
                 {
-                    $max = max(array_map(fn($payment)=>$payment->getCode(), $payments));
+                    $max = max(array_map(fn($order)=>$order->getCode(), $orders));
 
                     if(!empty($payments))
                     {
