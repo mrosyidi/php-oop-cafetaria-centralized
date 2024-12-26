@@ -4,6 +4,7 @@
     {
         use Service\OrderService;
         use Service\PaymentService;
+        use Helper\DuplicateHelper;
         use Helper\FindHelper;
         use Helper\InputHelper;
         use Helper\PayHelper;
@@ -77,6 +78,7 @@
                         {
                             $change = $money-$pay;
                             $this->paymentService->addPayment($code, $pay, $money);
+                            $elements = DuplicateHelper::duplicate($orders, $code);
 
                             echo "Kembalian : Rp." . $change . PHP_EOL;
                             echo "Sukses membayar pesanan" . PHP_EOL;
