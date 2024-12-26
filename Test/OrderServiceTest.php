@@ -64,4 +64,19 @@
         var_dump($orders);
     }
 
-    testRemoveOrderEmpty();
+    function testRemoveOrderNotEmpty(): void
+    {
+        $food = new Food("Mie Goreng", 6000);
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orderService->addOrder(1, $food->getName(), $food->getPrice(), 1);
+        $food = new Food("Soto Ayam", 12000);
+        $orderService->addOrder(1, $food->getName(), $food->getPrice(), 1);
+        $drink = new Drink("Es Campur", 12000);
+        $orderService->addOrder(2, $drink->getName(), $drink->getPrice(), 2);
+        $orderService->removeOrder(2);
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testRemoveOrderNotEmpty();
