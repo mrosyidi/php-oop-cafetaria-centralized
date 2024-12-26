@@ -79,6 +79,7 @@
                             $change = $money-$pay;
                             $this->paymentService->addPayment($code, $pay, $money);
                             $elements = DuplicateHelper::duplicate($orders, $code);
+                            $this->orderService->removeOrder($code);
 
                             echo "Kembalian : Rp." . $change . PHP_EOL;
                             echo "Sukses membayar pesanan" . PHP_EOL;
