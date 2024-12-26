@@ -64,10 +64,12 @@
         $drinkService = new DrinkServiceImpl($drinkRepository);
         $orderRepository = new OrderRepositoryImpl();
         $orderService = new OrderServiceImpl($orderRepository);
+        $paymentRepository = new PaymentRepositoryImpl();
+        $paymentService = new PaymentServiceImpl($paymentRepository);
         $orderService->addOrder(1, "Mie Goreng", 6000, 1);
         $orderService->addOrder(1, "Batagor", 8000, 1);
         $orderService->addOrder(1, "Es Campur", 12000, 2);
-        $orderView = new OrderView($orderService, $foodService, $drinkService);
+        $orderView = new OrderView($orderService, $foodService, $drinkService, $paymentService);
         $orderView->showOrder();
     }
 
@@ -111,4 +113,4 @@
         $orderService->showOrder();
     }
 
-    testViewShowOrderEmpty();
+    testViewShowOrderNotEmpty();
