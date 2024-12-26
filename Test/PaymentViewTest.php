@@ -68,11 +68,13 @@
         $drink = new Drink("Es Campur", 12000);
         $orderRepository->save(new Order(1, $drink->getName(), $drink->getPrice(), 2));
         $orderService = new OrderServiceImpl($orderRepository);
+        $detailRepository = new DetailRepositoryImpl();
+        $detailService = new DetailServiceImpl($detailRepository);
         $paymentRepository = new PaymentRepositoryImpl();
         $paymentService = new PaymentServiceImpl($paymentRepository);
-        $paymentView = new PaymentView($paymentService, $orderService);
+        $paymentView = new PaymentView($paymentService, $orderService, $detailService);
         $orderService->showOrder();
         $paymentView->addPayment();
     }
 
-    testViewShowPaymentNotEmpty();
+    testViewAddPayment();
