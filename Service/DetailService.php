@@ -46,7 +46,7 @@
 
             public function addDetail(array $items): void
             {
-                for($index = 1; $index <= sizeof($items); $index++)
+                for($index = 0; $index < sizeof($items); $index++)
                 {
                     $code = $items[$index]->getCode();
                     $name = $items[$index]->getName();

@@ -86,7 +86,6 @@
                             $this->detailService->addDetail($elements);
 
                             echo "Kembalian : Rp." . $change . PHP_EOL;
-                            echo "Sukses membayar pesanan" . PHP_EOL;
                         }
                     }else
                     {
