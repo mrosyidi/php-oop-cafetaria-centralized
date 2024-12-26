@@ -55,4 +55,13 @@
         var_dump($orders);
     }
 
-    testShowOrderNotEmpty();
+    function testRemoveOrderEmpty(): void
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $orderService = new OrderServiceImpl($orderRepository);
+        $orderService->removeOrder(1);
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testRemoveOrderEmpty();
