@@ -43,4 +43,12 @@
         var_dump($orders);
     }
 
-    testFindAllNotEmpty();
+    function testRemoveEmpty(): void 
+    {
+        $orderRepository = new OrderRepositoryImpl();
+        $orderRepository->remove(1);
+        $orders = $orderRepository->findAll();
+        var_dump($orders);
+    }
+
+    testRemoveEmpty();
