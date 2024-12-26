@@ -5,6 +5,7 @@
         use Service\OrderService;
         use Service\FoodService;
         use Service\DrinkService;
+        use Service\PaymentService;
         use Helper\CodeHelper;
         use Helper\DataHelper;
         use Helper\InputHelper;
@@ -15,12 +16,14 @@
             private OrderService $orderService;
             private FoodService $foodService;
             private DrinkService $drinkService;
+            private PaymentService $paymentService;
 
-            public function __construct(OrderService $orderService, FoodService $foodService, DrinkService $drinkService)
+            public function __construct(OrderService $orderService, FoodService $foodService, DrinkService $drinkService, PaymentService $paymentService)
             {
                 $this->orderService = $orderService;
                 $this->foodService = $foodService;
                 $this->drinkService = $drinkService;
+                $this->paymentService = $paymentService;
             }
 
             public function showOrder(): void 
@@ -61,6 +64,7 @@
             public function addOrder(int $numberOrder, bool $exit): void 
             {
                 $orders = $this->orderService->getOrder();
+                $payments = $this->paymentService->getPayment();
 
                 if($numberOrder == 1)
                 {
@@ -102,7 +106,7 @@
                         echo "Gagal menambah makanan, jumlah $order minimal satu" . PHP_EOL;
                     }else
                     {
-                        $code = CodeHelper::code($orders, $exit);
+                        $code = CodeHelper::code($orders, $payments, $exit);
                         $item = DataHelper::data($items, $number);
                         $this->orderService->addOrder($code, $item["name"], $item["price"], $qty);
                     }
