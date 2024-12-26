@@ -23,6 +23,7 @@
     require_once __DIR__ . "/Helper/CheckHelper.php";
     require_once __DIR__ . "/Helper/CodeHelper.php";
     require_once __DIR__ . "/Helper/DataHelper.php";
+    require_once __DIR__ . "/Helper/DuplicateHelper.php";
     require_once __DIR__ . "/Helper/FindHelper.php";
     require_once __DIR__ . "/Helper/InputHelper.php";
     require_once __DIR__ . "/Helper/PayHelper.php";
@@ -46,20 +47,22 @@
     use Helper\InputHelper;
 
     $foodRepository = new FoodRepositoryImpl();
-    $foodService = new FoodServiceImpl($foodRepository);
-    $foodView = new FoodView($foodService);
-
     $drinkRepository = new DrinkRepositoryImpl();
-    $drinkService = new DrinkServiceImpl($drinkRepository);
-    $drinkView = new DrinkView($drinkService);
-
     $orderRepository = new OrderRepositoryImpl();
-    $orderService = new OrderServiceImpl($orderRepository);
-    $orderView = new OrderView($orderService, $foodService, $drinkService);
-
     $paymentRepository = new PaymentRepositoryImpl();
+    $detailRepository = new DetailRepositoryImpl();
+
+    $foodService = new FoodServiceImpl($foodRepository);
+    $drinkService = new DrinkServiceImpl($drinkRepository);
+    $orderService = new OrderServiceImpl($orderRepository);
     $paymentService = new PaymentServiceImpl($paymentRepository);
-    $paymentView = new PaymentView($paymentService, $orderService);
+    $detailService = new DetailServiceImpl($detailRepository);
+
+    $foodView = new FoodView($foodService);
+    $drinkView = new DrinkView($drinkService);
+    $orderView = new OrderView($orderService, $foodService, $drinkService, $paymentService);
+    $paymentView = new PaymentView($paymentService, $orderService, $detailService);
+    $detailView = new DetailView($detailService, $paymentService);
 
     echo "Cafetaria App" . PHP_EOL;
 
@@ -89,7 +92,7 @@
             $paymentView->showPayment();
         }else if($pilihan == "5")
         {
-
+            $detailView->showDetail();
         }else if($pilihan == "x")
         {
             break;
